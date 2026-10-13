@@ -5,11 +5,12 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("resolve-branch", help="Encuentra una rama de release basado en el TAG")
     parser.add_argument("-b", "--branches", help="La ruta del archivo de ramas remotas")
+    parser.add_argument('tag', help="El tag que resolver a una rama remota")
     
     args = parser.parse_args()
     
     if getattr(args, "resolve-branch"):
-        resolve_branch(args.branches)
+        resolve_branch(args.branches, args.tag)
     
     
 if __name__ == "__main__":
