@@ -26,12 +26,16 @@ def resolve_branch(branches, tag):
             print(f"Ninguna rama encontrada asociada con tag {tag}")
             return
             
-        matches = [m for m in matches if "_old" not in m and "_stable" not in m]  
+        matches = [m for m in matches if "_old" not in m]  
         print(f"Ramas encontradas: {matches}")
-        final_match = [m for m in matches if tag_minor_version in m]
         
-        if not final_match:
-            print('moving to minor version...')
-            return
-        
-        print(f'RAMA FINAL: {final_match[0]}')
+        for m in matches:
+            full_pattern = rf"^releases/{tag_major_version}\.{tag_minor_version}+" 
+            if re.match(full_pattern, m):
+                print(m)
+                return
+            
+            major_version_pattern = rf"^releases/{tag_major_version}\.x"
+            if re.match(major_version_pattern, m):
+                print(m)
+                return
