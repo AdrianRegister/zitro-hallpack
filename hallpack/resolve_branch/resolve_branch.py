@@ -4,10 +4,9 @@ def resolve_branch(branches, tag):
     tag = tag.lower()
     tag_major_version = tag.split(".")[0]
     tag_minor_version = tag.split(".")[1]
-    print(f"TAG MAJOR VERSION: {tag_major_version}")
-    print(f"TAG MINOR VERSION: {tag_minor_version}\n")
+    # tag_patch_version = tag.split(".")[2]
     
-    print(f'Resolving branch from {branches} with tag {tag}\n')
+    print(f'Resolviendo rama de {branches} con tag {tag}\n')
     
     with open(branches, "r") as b:
         matches = []
@@ -27,7 +26,7 @@ def resolve_branch(branches, tag):
             return
             
         matches = [m for m in matches if "_old" not in m]  
-        print(f"Ramas encontradas: {matches}")
+        # print(f"Ramas encontradas: {matches}")
         
         for m in matches:
             full_pattern = rf"^releases/{tag_major_version}\.{tag_minor_version}+" 
