@@ -1,4 +1,5 @@
 import argparse
+from .resolve_branch.resolve_branch import resolve_branch
 
 def main():
     parser = argparse.ArgumentParser()
@@ -7,7 +8,8 @@ def main():
     
     args = parser.parse_args()
     
-    print(args)
+    if getattr(args, "resolve-branch"):
+        resolve_branch(args.branches)
     
     
 if __name__ == "__main__":
